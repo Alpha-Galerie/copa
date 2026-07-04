@@ -249,6 +249,24 @@ nav{
   nav{top:0;}
   .btn-gold{padding:18px 32px;}
 }
+/* Modal de reserva */
+.rm-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,5,3,.82);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);overflow-y:auto;}
+.rm-overlay.open{display:flex;}
+.rm-box{width:100%;max-width:440px;background:linear-gradient(180deg,var(--dk2) 0%,var(--blk) 100%);border:1px solid rgba(255,223,0,.18);position:relative;padding:40px 32px 34px;margin:auto;}
+.rm-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde) 0%,var(--amarelo) 50%,var(--verde) 100%);}
+.rm-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--mu2);font-size:26px;line-height:1;cursor:pointer;padding:4px 8px;}
+.rm-close:hover{color:var(--wh);}
+.rm-eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--amarelo);margin-bottom:10px;}
+.rm-game{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;color:var(--wh);margin-bottom:6px;}
+.rm-game .gn{color:var(--verde-l);}
+.rm-when{font-family:'Syne',sans-serif;font-size:12px;letter-spacing:1px;color:var(--mu2);margin-bottom:24px;}
+.rm-label{display:block;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.6);margin-bottom:7px;margin-top:16px;}
+.rm-input{width:100%;padding:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:var(--wh);font-family:'DM Sans',sans-serif;font-size:15px;border-radius:2px;}
+.rm-input:focus{outline:none;border-color:var(--amarelo);}
+.rm-note{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.5px;color:rgba(245,245,240,.4);line-height:1.6;margin:20px 0 22px;}
+.rm-submit{width:100%;padding:18px;background:var(--amarelo);color:var(--blk);font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;}
+.rm-submit:hover{background:var(--amarelo-l);}
+.rm-err{color:#ff6b6b;font-family:'Syne',sans-serif;font-size:11px;margin-top:10px;display:none;}
 </style>
 </head>
 <body>
@@ -256,10 +274,10 @@ nav{
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span class="ticker-item">⚽ COPA DO MUNDO 2026 <span class="yd">·</span> CLUB ALPHA <span class="yd">·</span> ALPHAVILLE</span>
+    <span class="ticker-item">🇧🇷 DOMINGO 05/07 <span class="yd">·</span> BRASIL x NORUEGA <span class="yd">·</span> 17H NO CLUB ALPHA</span>
     <span class="ticker-item">🏆 PAINEL DE LED <span class="yd">·</span> SOM PREMIUM <span class="yd">·</span> ROOFTOP EXCLUSIVO</span>
     <span class="ticker-item">🇧🇷 VAGAS LIMITADAS <span class="yd">·</span> RESERVE AGORA <span class="yd">·</span> COMPLEXO MADEIRA</span>
-    <span class="ticker-item">⚽ COPA DO MUNDO 2026 <span class="yd">·</span> CLUB ALPHA <span class="yd">·</span> ALPHAVILLE</span>
+    <span class="ticker-item">🇧🇷 DOMINGO 05/07 <span class="yd">·</span> BRASIL x NORUEGA <span class="yd">·</span> 17H NO CLUB ALPHA</span>
     <span class="ticker-item">🏆 PAINEL DE LED <span class="yd">·</span> SOM PREMIUM <span class="yd">·</span> ROOFTOP EXCLUSIVO</span>
     <span class="ticker-item">🇧🇷 VAGAS LIMITADAS <span class="yd">·</span> RESERVE AGORA <span class="yd">·</span> COMPLEXO MADEIRA</span>
   </div>
@@ -285,13 +303,13 @@ nav{
       <span class="yd">DO MUNDO</span><br>
       <span class="gn">2026</span>
     </h1>
-    <p class="hero-tagline">O melhor ambiente de Alphaville para assistir a Copa, painel de LED de última geração, som premium e rooftop exclusivo com vista da cidade.</p>
+    <p class="hero-tagline"><strong style="color:var(--amarelo);">Oitavas de final — domingo, 05/07 às 17h.</strong> Brasil x Noruega no melhor ambiente de Alphaville: painel de LED de última geração, som premium e rooftop exclusivo. Vagas limitadas por jogo.</p>
   </div>
 </section>
 
 <!-- COUNTDOWN -->
 <section class="cd-section">
-  <p class="cd-label" id="cd-label">Próximo jogo do Brasil em</p>
+  <p class="cd-label" id="cd-label">Domingo, 05/07 · 17h · faltam</p>
   <div class="countdown">
     <div class="cd-item"><span class="cd-num" id="d">00</span><span class="cd-unit">dias</span></div>
     <div class="cd-sep">:</div>
@@ -371,24 +389,18 @@ nav{
 
     <div class="pack">
       <span class="pack-name">Acesso Individual</span>
-      <p class="pack-unit">por pessoa · por jogo</p>
-      <p class="pack-desc">Viva uma experiência no ambiente mais premium de Alphaville. Seu lugar garantido, com privacidade, conforto e o melhor telão da região.</p>
+      <div class="pack-price">R$100</div>
+      <p class="pack-unit">consumível · por pessoa</p>
+      <p class="pack-desc">Domingo, 05/07 · Brasil x Noruega (oitavas de final), 17h. Assista no ambiente mais premium de Alphaville: seu lugar garantido, com privacidade, conforto e o melhor telão da região.</p>
       <ul class="pack-perks">
         <li>Acesso ao lounge para 1 jogo</li>
+        <li>Valor em consumíveis incluso</li>
         <li>Painel de LED de última geração</li>
         <li>Rooftop disponível antes do jogo</li>
         <li>Acesso à Alpha Galerie</li>
       </ul>
-      <div style="margin-bottom:18px;">
-        <label for="jogo-individual" style="display:block;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,245,240,.6);margin-bottom:8px;">Escolha o jogo do Brasil</label>
-        <select id="jogo-individual" style="width:100%;padding:12px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);color:#f5f5f0;font-family:'Syne',sans-serif;font-size:14px;border-radius:2px;">
-          <option value="13/06 - Brasil x Marrocos">13/06 (sáb) - Brasil x Marrocos</option>
-          <option value="19/06 - Brasil x Haiti">19/06 (sex) - Brasil x Haiti</option>
-          <option value="24/06 - Brasil x Escócia">24/06 (qua) - Brasil x Escócia</option>
-        </select>
-      </div>
-      <p style="font-family:'Syne',sans-serif;font-size:10px;letter-spacing:1px;color:rgba(245,245,240,.35);line-height:1.6;margin-bottom:24px;padding:12px 14px;border:1px solid rgba(255,255,255,.07);border-left:2px solid rgba(0,156,59,.3);">Reservas não são reembolsáveis. Ao reservar, você garante sua vaga com exclusividade, o espaço é preparado para o seu grupo e não pode ser realocado após a confirmação. Taxa de serviço de 20%.</p>
-      <a href="#" id="btn-individual" onclick="var jogo=document.getElementById('jogo-individual').value; window.open('https://wa.me/5511942920076?text=' + encodeURIComponent('Quero reservar Acesso Individual para a Copa no Club Alpha - ' + jogo), '_blank'); return false;" class="pack-btn">Garanta seu ingresso</a>
+      <p style="font-family:'Syne',sans-serif;font-size:10px;letter-spacing:1px;color:rgba(245,245,240,.35);line-height:1.6;margin-bottom:24px;padding:12px 14px;border:1px solid rgba(255,255,255,.07);border-left:2px solid rgba(0,156,59,.3);">Reserva por pessoa. Vai trazer alguém? Compartilhe o link e cada um faz a sua. Reservas não são reembolsáveis. Taxa de serviço de 20%. Os R$100 são consumíveis: viram crédito para consumir no clube; o que exceder é pago à parte.</p>
+      <a href="#" id="btn-individual" onclick="abrirReserva(); return false;" class="pack-btn">Fazer minha reserva</a>
     </div>
 
     <div class="pack hl">
@@ -452,7 +464,7 @@ nav{
     <span class="gn">VAMOS</span><br>
     <span class="yd">JUNTOS.</span>
   </h2>
-  <a href="https://wa.me/5511942920076?text=Quero+reservar+para+a+Copa+do+Mundo+no+Club+Alpha" class="btn-gold" style="margin-bottom:20px;display:inline-block;">Garantir meu lugar agora</a>
+  <a href="#" onclick="abrirReserva(); return false;" class="btn-gold" style="margin-bottom:20px;display:inline-block;">Garantir meu lugar agora</a>
   <p class="cta-sub" style="font-style:normal;font-weight:600;font-size:clamp(15px,1.8vw,20px);color:rgba(255,255,255,.85);letter-spacing:.5px;">A Copa só vem uma vez.<br><span style="color:var(--amarelo);">Viva cada jogo do jeito que ele merece.</span></p>
 </section>
 <div class="cta-contacts" style="background:#003320;border-top:2px solid rgba(255,223,0,.2);">
@@ -483,9 +495,7 @@ nav{
 
 <script>
 const jogosBrasil = [
-  { data: '2026-06-13T19:00:00-03:00', nome: 'Brasil x Marrocos' },
-  { data: '2026-06-19T21:30:00-03:00', nome: 'Brasil x Haiti' },
-  { data: '2026-06-24T19:00:00-03:00', nome: 'Brasil x Escócia' }
+  { data: '2026-07-05T17:00:00-03:00', nome: 'Brasil x Noruega · Oitavas de final' }
 ];
 function getProximoJogo(){
   const agora = Date.now();
@@ -515,6 +525,56 @@ function tick(){
   document.getElementById('s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
 }
 tick(); setInterval(tick,1000);
+</script>
+<!-- MODAL DE RESERVA -->
+<div class="rm-overlay" id="rm-overlay">
+  <div class="rm-box">
+    <button class="rm-close" id="rm-close" aria-label="Fechar">&times;</button>
+    <p class="rm-eyebrow">Reserva por pessoa</p>
+    <div class="rm-game">Brasil <span class="gn">x</span> Noruega</div>
+    <p class="rm-when">Oitavas de final · Domingo 05/07 · 17h · Club Alpha</p>
+
+    <label class="rm-label" for="rm-nome">Seu nome</label>
+    <input class="rm-input" type="text" id="rm-nome" placeholder="Como podemos te chamar?" autocomplete="name">
+
+    <label class="rm-label" for="rm-wpp">Seu WhatsApp</label>
+    <input class="rm-input" type="tel" id="rm-wpp" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="tel">
+
+    <p class="rm-note">R$100 consumíveis por pessoa (viram crédito no clube) · taxa de serviço 20%. Ao confirmar, você abre uma conversa no nosso WhatsApp para finalizar.</p>
+
+    <button class="rm-submit" id="rm-submit">Fazer minha reserva</button>
+    <p class="rm-err" id="rm-err">Preencha seu nome e WhatsApp para continuar.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('rm-overlay');
+  var closeBtn = document.getElementById('rm-close');
+  var submit = document.getElementById('rm-submit');
+  var err = document.getElementById('rm-err');
+  var JOGO = 'Brasil x Noruega (oitavas), domingo 05/07 às 17h';
+  var WPP = '5511942920076';
+
+  window.abrirReserva = function(){
+    overlay.classList.add('open');
+    setTimeout(function(){ var n = document.getElementById('rm-nome'); if(n) n.focus(); }, 50);
+  };
+  function fechar(){ overlay.classList.remove('open'); }
+
+  closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) fechar(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') fechar(); });
+
+  submit.addEventListener('click', function(){
+    var nome = (document.getElementById('rm-nome').value || '').trim();
+    var wpp = (document.getElementById('rm-wpp').value || '').trim();
+    if(!nome || !wpp){ err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    var msg = 'Olá! Quero reservar meu lugar para ' + JOGO + ' no Club Alpha.\nMeu nome: ' + nome + '\nMeu WhatsApp: ' + wpp;
+    window.open('https://wa.me/' + WPP + '?text=' + encodeURIComponent(msg), '_blank');
+  });
+})();
 </script>
 </body>
 </html>
